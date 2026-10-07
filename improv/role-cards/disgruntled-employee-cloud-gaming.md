@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Disgruntled Employee × Cloud-Gaming Subscription
+# Auditee Role Card — Disgruntled Employee × Cloud-Gaming Subscription
 
 **Do not show this card to the auditor.** You are the employee. The [purported CloudQuarry email](../artifacts/suspicious-hosting-email.md) is a fabricated prop. Provide it only if asked for project support.
 
@@ -14,4 +14,4 @@ Sound irritated and accuse the auditor of wasting time or assuming the worst. Gi
 
 The auditor must stay professional, separate attitude from evidence, and document what is established.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fdisgruntled-employee-cloud-gaming.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fdisgruntled-employee-cloud-gaming.md)

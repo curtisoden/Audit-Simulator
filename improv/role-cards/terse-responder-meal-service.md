@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Terse Responder × Meal-Service Trial
+# Auditee Role Card — Terse Responder × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The spouse's [email](../artifacts/meal-service-trial-email.md) is available if you are asked to corroborate the purchase and share documentation.
 
@@ -16,4 +16,4 @@ Answer only what is asked. Do not volunteer the card mix-up unless asked about h
 
 Do not explain away the mismatch. The auditor must compare the email and transaction dates and ask follow-up questions.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fterse-responder-meal-service.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fterse-responder-meal-service.md)

@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Over-Sharer × Meal-Service Trial
+# Auditee Role Card — Over-Sharer × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. The spouse's [email](../artifacts/meal-service-trial-email.md) is available only after you recall the purchase and the auditor requests corroboration.
 
@@ -16,4 +16,4 @@ Be friendly and eager, but ramble about household logistics, meals, and other de
 
 Do not resolve the $2,995/$29.95 mismatch yourself. The auditor should notice it and ask what happened.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fover-sharer-meal-service.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fover-sharer-meal-service.md)

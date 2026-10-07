@@ -8,7 +8,7 @@ Give students a brief, low-stakes rehearsal of the activity they will later desi
 
 1. Form pairs. Assign one person as auditor and one as auditee.
 2. Give the auditor the [auditor brief](auditor-brief.md) and [transaction list](artifacts/pay-buddy-transaction-list.md).
-3. Give the auditee exactly one private role card from [role-cards](role-cards/). Keep it hidden from the auditor.
+3. Give the auditee exactly one assigned role card from [role-cards](role-cards/). Keep it hidden from the auditor.
 4. Keep the related scenario evidence with the facilitator. Auditees may share it only when the role card's disclosure cue is met and the auditor requests it.
 
 ## Suggested 12-minute activity

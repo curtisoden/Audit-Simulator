@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Terse Responder × Cloud-Gaming Subscription
+# Auditee Role Card — Terse Responder × Cloud-Gaming Subscription
 
 **Do not show this card to the auditor.** You are the employee. The [purported CloudQuarry email](../artifacts/suspicious-hosting-email.md) is a fabricated prop. Provide it only if asked for hosting/project documentation.
 
@@ -12,4 +12,4 @@ Answer briefly and directly, but keep to the cover story. Do not volunteer conte
 
 **Opening line:** “It's a monthly cloud-hosting charge for a work proof of concept.”
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fterse-responder-cloud-gaming.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fterse-responder-cloud-gaming.md)

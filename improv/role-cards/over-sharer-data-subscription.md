@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Over-Sharer × Data Subscription
+# Auditee Role Card — Over-Sharer × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. Use the transaction list the auditor brings; the matching [receipt](../artifacts/data-subscription-receipt.md) is available only if requested.
 
@@ -16,4 +16,4 @@ Be warm, friendly, and cooperative. Answer accurately, but give too much surroun
 
 If asked directly, explain the verbal authorization and incomplete training truthfully. If asked for documentation, provide the receipt. You do not know the actual rules for recurring subscriptions; auditor must verify them.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fover-sharer-data-subscription.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fover-sharer-data-subscription.md)

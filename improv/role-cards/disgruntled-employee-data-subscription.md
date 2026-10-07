@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Disgruntled Employee × Data Subscription
+# Auditee Role Card — Disgruntled Employee × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. Give the [receipt](../artifacts/data-subscription-receipt.md) only if requested.
 
@@ -16,4 +16,4 @@ You are irritated by the interview and feel a small work purchase is being treat
 
 If asked, describe the verbal approval and training status accurately. Provide the receipt when requested. Let the auditor explain the purpose and ask follow-up questions.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fdisgruntled-employee-data-subscription.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fdisgruntled-employee-data-subscription.md)

@@ -1,4 +1,4 @@
-# Private Auditee Role Card — Smooth Operator × Meal-Service Trial
+# Auditee Role Card — Smooth Operator × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The spouse's [email](../artifacts/meal-service-trial-email.md) is available if asked to confirm the purchase.
 
@@ -16,4 +16,4 @@ Be polished and composed. Initially frame the matter as a simple mix-up, using p
 
 The auditor should verify rather than accept your confident framing.
 
-![QR code to this private role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fsmooth-operator-meal-service.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fsmooth-operator-meal-service.md)
