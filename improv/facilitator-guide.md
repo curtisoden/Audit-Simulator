@@ -37,4 +37,4 @@ Give students a brief, low-stakes rehearsal of the activity they will later desi
 5. What further evidence, corroboration, or next interview would be appropriate?
 6. How should the interviewer summarize facts separately from assumptions?
 
-![QR code to this facilitator guide](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Ffacilitator-guide.md)
+![QR code to this facilitator guide](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Ffacilitator-guide.html)

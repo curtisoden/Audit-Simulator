@@ -31,4 +31,4 @@ DataShelf Research Billing
 
 The employee uses the dataset in their regular job duties and recalls receiving verbal authorization from a manager before subscribing. The employee has not completed recurring travel-card training. The receipt supports the product and payment channel, but does not independently establish the verbal approval, policy eligibility, or completion of any required process. The employee should provide it when asked, not treat it as proof that every requirement was met.
 
-![QR code to this data-subscription receipt](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Fartifacts%2Fdata-subscription-receipt.md)
+![QR code to this data-subscription receipt](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fartifacts%2Fdata-subscription-receipt.html)

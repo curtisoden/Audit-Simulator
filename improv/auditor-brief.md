@@ -24,4 +24,4 @@ Use the transaction list as an interview aid. Ask the employee to explain the ch
 
 You do **not** know the underlying merchant, who initiated the subscription, whether the purchase was personal or business-related, or whether it was authorized. Those are interview questions, not assumptions.
 
-![QR code to this auditor brief](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Fauditor-brief.md)
+![QR code to this auditor brief](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fauditor-brief.html)

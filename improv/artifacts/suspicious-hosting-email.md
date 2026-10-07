@@ -38,4 +38,4 @@ CloudQuarry Billing Desk
 
 The email contains misspellings (“Recepts,” “Projct Hostng,” “invocie,” “computeing”), nonstandard invoice items, and a math inconsistency: $29.95 plus $2.40 tax is $32.35, not $29.95. The domain and supplier are invented. Treat these as red flags for corroboration, not standalone proof that the employee's explanation is false.
 
-![QR code to this purported hosting-email artifact](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Fartifacts%2Fsuspicious-hosting-email.md)
+![QR code to this purported hosting-email artifact](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fartifacts%2Fsuspicious-hosting-email.html)

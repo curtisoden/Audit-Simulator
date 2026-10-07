@@ -14,4 +14,4 @@ Be unusually friendly and talkative. Bury your cover story in details about proj
 
 If confronted with concrete inconsistencies and asked directly whether it was personal, pause, then admit the cloud-gaming subscription and personal use. The auditor still needs to document and corroborate facts.
 
-![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fover-sharer-cloud-gaming.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2Fover-sharer-cloud-gaming.html)

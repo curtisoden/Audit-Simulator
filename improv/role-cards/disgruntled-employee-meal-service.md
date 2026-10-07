@@ -16,4 +16,4 @@ You are annoyed by the interruption and worry that the auditor assumes you did s
 
 The auditor should clarify the facts and investigate the price mismatch without accusing you.
 
-![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fdisgruntled-employee-meal-service.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2Fdisgruntled-employee-meal-service.html)

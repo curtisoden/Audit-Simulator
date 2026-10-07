@@ -31,4 +31,4 @@ TableNest Customer Team
 
 The employee did not knowingly initiate this subscription or recognize the charges at first. A few months ago, the employee let their spouse use a card for an online purchase. The employee's travel card and personal card are from the same bank and look alike. The spouse can confirm which card was used and share this email. The $29.95 transaction records continue in July, August, and September, while this email states a $2,995.00 renewal from July. That mismatch requires inquiry and corroboration; it does not by itself establish what was actually billed or who used the card.
 
-![QR code to this meal-service email artifact](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Fartifacts%2Fmeal-service-trial-email.md)
+![QR code to this meal-service email artifact](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fartifacts%2Fmeal-service-trial-email.html)

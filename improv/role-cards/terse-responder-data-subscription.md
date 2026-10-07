@@ -16,4 +16,4 @@ Be factual and concise. Answer only the question asked. Do not volunteer the rec
 
 If asked who/what: “DataShelf Research. It's a monthly dataset for work.” If asked about approval: “Riley Chen gave me a verbal okay before I subscribed.” If asked about training: “I haven't completed the recurring training.” Provide the receipt if requested. No conclusion about compliance is yours to make.
 
-![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fgithub.com%2Fcurtisoden%2FAudit-Simulator%2Fblob%2Fmain%2Fimprov%2Frole-cards%2Fterse-responder-data-subscription.md)
+![QR code to this auditee role card](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2Fterse-responder-data-subscription.html)
