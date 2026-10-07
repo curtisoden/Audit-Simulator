@@ -6,11 +6,11 @@
 
 You know that travel-card policy violations can have serious consequences. That general knowledge does not tell you whether this purchase violated policy.
 
-You did not knowingly subscribe to TableNest and did not recognize the charges at first. A few months ago, your spouse needed a card for an online purchase; you told them to take one from your wallet. Your personal and travel cards are from the same bank and look alike. The spouse can provide an email stating $29.95 monthly for April–June and $2,995.00 monthly from July; charges remain $29.95 through September.
+You did not knowingly subscribe to TableNest and did not recognize the charges at first. A few months ago, your spouse needed a card for an online purchase; you told them to take one from your wallet. Your personal and travel cards are from the same bank and look alike. The spouse can provide an email stating $29.95 monthly through December 2026 and $295.00 monthly beginning January 2027. Charges from April through September remain at the introductory price.
 
 ## How to play
 
-Be polished and composed. Initially frame the matter as a simple mix-up, using phrases such as “probably an innocent household mix-up.” Do not assert details you do not know. If asked when the card was used, who used it, or what records exist, answer truthfully and arrange to contact your spouse. Share the email when requested; do not dismiss the renewal mismatch.
+Be polished and composed. Initially frame the matter as a simple mix-up, using phrases such as “probably an innocent household mix-up.” Do not assert details you do not know. If asked when the card was used, who used it, or what records exist, answer truthfully and arrange to contact your spouse. Share the email when requested; it documents the subscription terms but not which physical card was used.
 
 **Opening line:** “That descriptor doesn't ring a bell, but it may be a household card mix-up. Let's check the records before we conclude anything.”
 

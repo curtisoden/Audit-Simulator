@@ -9,16 +9,16 @@
 **From:** TableNest Customer Team <welcome@tablenest.example>  
 **To:** household.member@example.invalid  
 **Date:** April 1, 2026, 8:42 p.m.  
-**Subject:** Your TableNest three-month meal-box trial
+**Subject:** Your TableNest meal-box trial through year-end
 
 Hello,
 
 Your ready-made meal delivery trial is confirmed.
 
-- Trial term: April 1 through June 30, 2026
-- Trial price: **$29.95 per month** for three months
+- Trial term: April 1 through December 31, 2026
+- Trial price: **$29.95 per month** through the end of 2026
 - Payment method: Pay Buddy
-- Scheduled renewal: **$2,995.00 per month beginning July 1, 2026**, unless canceled before renewal
+- Scheduled renewal: **$295.00 per month beginning January 1, 2027**, unless canceled before renewal
 - Account reference: TN-TRIAL-260401-593
 
 Please review the renewal price and cancel before the renewal date if you do not want the subscription to continue.
@@ -29,6 +29,6 @@ TableNest Customer Team
 
 ## Simulation context (not part of the email)
 
-The employee did not knowingly initiate this subscription or recognize the charges at first. A few months ago, the employee let their spouse use a card for an online purchase. The employee's travel card and personal card are from the same bank and look alike. The spouse can confirm which card was used and share this email. The $29.95 transaction records continue in July, August, and September, while this email states a $2,995.00 renewal from July. That mismatch requires inquiry and corroboration; it does not by itself establish what was actually billed or who used the card.
+The employee did not knowingly initiate this subscription or recognize the charges at first. A few months ago, the employee let their spouse use a card for an online purchase. The employee's travel card and personal card are from the same bank and look alike. The spouse can confirm which card was used and share this email. The $29.95 charges from April through September are consistent with the introductory price in the email. The scheduled increase to $295.00 is prospective and begins in January 2027; no January charge appears in the provided transaction list. The email supports the subscription terms, but does not establish which physical card was used or who authorized its use.
 
 ![QR code to this meal-service email artifact](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fartifacts%2Fmeal-service-trial-email.html)
