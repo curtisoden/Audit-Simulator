@@ -47,8 +47,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #ffbd55;outline-offset:3p
 .card.green{border-left-color:var(--green)}
 .card p:last-child,.card ul:last-child{margin-bottom:0}
 .card p,.card li{font-size:clamp(.96rem,1.08vw,1.16rem)}
-.qr-link{display:flex;align-items:center;gap:12px;margin-top:14px;font-size:.95rem;font-weight:650;text-decoration:none}
-.qr-link img{width:clamp(84px,9vw,112px);height:clamp(84px,9vw,112px);padding:4px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.qr-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:1rem;font-weight:700;text-align:center;text-decoration:none}
+.qr-link img{width:clamp(170px,17vw,220px);height:clamp(170px,17vw,220px);padding:5px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.improv-slide{padding:clamp(18px,1.8vw,32px)}
 .callout{margin:.8em 0;padding:clamp(12px,1.5vw,18px);border:1px solid #f0cba0;border-left:5px solid #b4530a;border-radius:9px;background:var(--warm);font-size:clamp(1rem,1.2vw,1.28rem);line-height:1.45}
 .callout strong{color:#9a4600}
 .statline{display:flex;flex-wrap:wrap;gap:10px;margin:.6em 0}
@@ -110,13 +111,13 @@ body.notes-open #notes{transform:none}
   </section>
 
   <!-- 2: IMPROV FOR ACCOUNTING -->
-  <section class="slide" data-section="Welcome">
+  <section class="slide improv-slide" data-section="Welcome">
     <span class="badge">Improv for Accounting</span>
     <h2>Can you turn a $29.95 charge into an audit story?</h2>
     <p class="lead">In pairs, one person interviews an employee; the other plays the auditee. The recurring Pay Buddy charge is known. The actual vendor and purpose are not.</p>
     <div class="cols">
-      <div class="card"><h3>Auditor</h3><p>Ask questions, clarify the facts, and request evidence before deciding whether the purchase was legitimate.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/auditor-brief.html" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fauditor-brief.html" alt="QR code to the auditor brief"><span>Scan for the auditor role<br>or <u>open the brief</u></span></a></div>
-      <div class="card green"><h3>Auditee</h3><p>Play a communication style and scenario. Share details and fictional documents when the auditor asks.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/role-cards/" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2F" alt="QR code to the auditee role cards"><span>Scan for auditee scenarios<br>or <u>open the role cards</u></span></a></div>
+      <div class="card"><h3>Auditor</h3><p>Ask questions, clarify the facts, and request evidence before deciding whether the purchase was legitimate.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/auditor-brief.html" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=440&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fauditor-brief.html" alt="QR code to the auditor brief"><span>Scan for the auditor role<br>or <u>open the brief</u></span></a></div>
+      <div class="card green"><h3>Auditee</h3><p>Play a communication style and scenario. Share details and fictional documents when the auditor asks.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/role-cards/" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=440&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2F" alt="QR code to the auditee role cards"><span>Scan for auditee scenarios<br>or <u>open the role cards</u></span></a></div>
     </div>
     <div class="callout"><strong>You just showed how naturally people can bring an audit interview to life.</strong> Teaching an AI to do the same takes careful scenario design, clear instructions, and testing. That&rsquo;s what you&rsquo;ll learn in this project.</div>
   </section>
