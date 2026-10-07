@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Curtis Oden, MBA">
+<meta name="description" content="Instructional slide deck: Build an Audit Interview Training Assistant. v0.1.0 by Curtis Oden, MBA">
+<meta name="dcterms.created" content="2026-09-17">
+<title>Audit Simulator - Instructional Slide Deck v0.1.0</title>
+<style>
+:root{
+  --fg:#16202b; --muted:#5a6673; --accent:#0b5cad; --accent2:#0a7d55;
+  --bg:#ffffff; --deck-bg:#0d1a2b; --border:#d8dde3; --code-bg:#f5f7fa;
+  --kickoff:#0b5cad; --guided:#0a7d55; --warn:#b4530a; --warn-bg:#fff4ea;
+  --notes-width:min(420px,30vw);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;height:100%;}
+body{
+  background:var(--deck-bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  overflow:hidden;
+}
+/* Stage */
+#stage{position:fixed; inset:0; display:flex; align-items:stretch; justify-content:center;}
+#slidewrap{
+  position:relative; flex:1 1 auto; display:flex; align-items:center; justify-content:center;
+  min-width:0; padding:2vh 2vw; transition:margin-right .25s ease;
+}
+body.notes-open #slidewrap{margin-right:var(--notes-width);}
+.slide{
+  display:none; width:100%; max-width:min(1600px,100%); max-height:calc(100vh - 72px); overflow:auto;
+  background:var(--bg); border-radius:14px; box-shadow:0 18px 50px rgba(0,0,0,.45);
+  padding:clamp(24px,3vw,56px); animation:fade .3s ease;
+}
+.slide.active{display:block;}
+@keyframes fade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+.slide h1{font-size:clamp(1.9rem,3vw,2.8rem); line-height:1.15; margin:.1em 0 .3em;}
+.slide h2{font-size:clamp(1.5rem,2.5vw,2.4rem); line-height:1.2; margin:0 0 .5em; padding-bottom:.25em; border-bottom:3px solid var(--accent);}
+.slide h3{font-size:clamp(1.05rem,1.5vw,1.4rem); margin:1em 0 .3em; color:#243547;}
+.slide p{font-size:clamp(1rem,1.15vw,1.3rem); line-height:1.5; margin:.5em 0;}
+.slide ul{font-size:clamp(1rem,1.1vw,1.22rem); line-height:1.45; margin:.4em 0 .6em; padding-left:1.4em;}
+.slide li{margin:.28em 0;}
+.slide .lead{font-size:1.3rem; color:var(--muted);}
+.slide strong{color:#10243a;}
+.slide code{background:var(--code-bg); padding:.12em .4em; border-radius:4px; font-family:Consolas,Menlo,monospace; font-size:.92em;}
+/* Section badge */
+.badge{display:inline-block; font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:.28em .7em; border-radius:20px; color:#fff; margin-bottom:.9em;}
+.badge.kickoff{background:var(--kickoff);}
+.badge.guided{background:var(--guided);}
+/* Title slide */
+.title-slide{text-align:center;}
+.title-slide h1{font-size:clamp(2rem,3.8vw,3.4rem); margin-top:.2em;}
+.title-slide .sub{font-size:clamp(1.1rem,1.8vw,1.5rem); color:var(--muted); margin:.4em 0 1.4em;}
+.authorbox{display:inline-block; text-align:left; margin-top:1.2em; padding:1em 1.4em;
+  background:var(--code-bg); border:1px solid var(--border); border-radius:8px; font-size:1.02rem; color:var(--muted);}
+.authorbox strong{color:var(--fg);}
+.authorbox a{color:var(--accent);}
+/* Columns + cards */
+.cols{display:flex; gap:22px; flex-wrap:wrap; margin:.6em 0;}
+.col{flex:1 1 0; min-width:220px;}
+.case-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:.6em 0;}
+.case-grid .col{min-width:0;}
+.card{background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:8px; padding:14px 16px; margin:.5em 0;}
+.card.g{border-left-color:var(--guided);}
+.card h3{margin:.1em 0 .3em; font-size:1.05rem;}
+.card p, .card ul{font-size:1rem; margin:.2em 0;}
+.pill-row{display:flex; flex-wrap:wrap; gap:8px; margin:.6em 0;}
+.pill{background:#eaf1fb; color:#0b3f7a; border:1px solid #cfe0f5; border-radius:16px; padding:.3em .8em; font-size:.95rem; font-weight:600;}
+.callout{background:var(--warn-bg); border:1px solid #f0cba0; border-left:4px solid var(--warn); border-radius:8px; padding:12px 16px; margin:.7em 0; font-size:1.02rem;}
+.callout strong{color:var(--warn);}
+table.mini{border-collapse:collapse; width:100%; font-size:1rem; margin:.5em 0;}
+table.mini th,table.mini td{border:1px solid var(--border); padding:7px 11px; text-align:left; vertical-align:top;}
+table.mini thead th{background:var(--accent); color:#fff;}
+.deliv-tag{display:inline-block; background:var(--guided); color:#fff; font-weight:700; border-radius:6px; padding:.15em .55em; font-size:.95rem; margin-right:.4em;}
+/* Controls bar */
+#bar{position:fixed; left:0; right:0; bottom:0; height:52px; display:flex; align-items:center; gap:clamp(6px,1vw,14px);
+  padding:0 clamp(8px,1.2vw,18px); background:rgba(9,18,30,.92); color:#cdd8e4; font-size:clamp(.78rem,.9vw,.9rem); z-index:30;}
+body.notes-open #bar{right:var(--notes-width);}
+#bar button{background:#1b2d44; color:#e8eef6; border:1px solid #2b4056; border-radius:6px; padding:.4em .8em; font-size:.9rem; cursor:pointer;}
+#bar button:hover{background:#26405c;}
+#counter{font-variant-numeric:tabular-nums;}
+#progress{flex:1 1 auto; height:6px; background:#1b2d44; border-radius:3px; overflow:hidden;}
+#progressbar{height:100%; width:0; background:var(--accent); transition:width .25s ease;}
+.spacer{flex:1 1 auto;}
+#sectionlabel{font-weight:700; letter-spacing:.05em;}
+/* Notes sidebar */
+#notes{position:fixed; top:0; right:0; width:var(--notes-width); height:calc(100% - 52px); background:#f4f7fb;
+  border-left:1px solid #c6d0db; transform:translateX(100%); transition:transform .25s ease; z-index:25;
+  overflow-y:auto; padding:22px 22px 40px;}
+body.notes-open #notes{transform:none;}
+#notes h3{margin:.2em 0 .5em; font-size:1.05rem; color:var(--accent); border-bottom:1px solid #d3dde8; padding-bottom:.3em;}
+#notes .note-block{display:none;}
+#notes .note-block.active{display:block;}
+#notes p,#notes li{font-size:.94rem; line-height:1.5; color:#33424f;}
+#notes ul{padding-left:1.2em; margin:.3em 0;}
+#notes .term{font-weight:700; color:#12243a;}
+#notes .refs{margin-top:1em; background:#fff; border:1px solid #d8e0ea; border-radius:8px; padding:10px 12px;}
+#notes .refs h4{margin:.1em 0 .4em; font-size:.9rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted);}
+#notes .refs a{color:var(--accent); word-break:break-word; font-size:.9rem;}
+#notes .empty{color:var(--muted); font-style:italic;}
+.kbd{background:#e7edf4; border:1px solid #c3cfdb; border-bottom-width:2px; border-radius:4px; padding:.05em .45em; font-family:Consolas,monospace; font-size:.85em;}
+@media (max-width:1100px){
+  body.notes-open #slidewrap{margin-right:0;}
+  #notes{width:min(380px,80vw);} body.notes-open #bar{right:0;}
+}
+@media (max-width:820px){
+  body.notes-open #slidewrap{margin-right:0;}
+  #notes{width:100%;} body.notes-open #bar{right:0;}
+  #slidewrap{padding:12px;}
+  .slide{max-height:calc(100vh - 68px); padding:clamp(20px,4vw,32px);}
+  .case-grid{grid-template-columns:1fr;}
+}
+@media (max-width:600px){
+  #bar{height:48px; gap:6px; padding:0 8px;}
+  #bar button{padding:.35em .55em;}
+  #bar .keyhint{display:none;}
+  #progress{min-width:20px;}
+  .slide{max-height:calc(100vh - 62px); padding:20px 18px; border-radius:8px;}
+  .cols{gap:12px;}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="slidewrap">
+
+    <!-- 1: TITLE -->
+    <section class="slide title-slide" data-section="Kickoff">
+      <span class="badge kickoff">Kickoff &middot; Instructor-Led</span>
+      <h1>Build an Audit Interview<br>Training Assistant</h1>
+      <p class="sub">Practice the questions that turn a transaction or system log into audit evidence.</p>
+      <div class="authorbox">
+        <strong>Author:</strong> Curtis Oden, MBA<br>
+        <strong>Contact:</strong> <a href="mailto:coden.bz@gmail.com">coden.bz@gmail.com</a><br>
+        <strong>Version:</strong> 0.1.0 &nbsp;&middot;&nbsp; <strong>Date:</strong> 10/7/2026
+      </div>
+    </section>
+
+    <!-- 2: ABOUT THE PRESENTER -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">About Your Presenter</span>
+      <h2>Curtis Oden, MBA</h2>
+      <div class="cols">
+        <div class="col">
+          <div class="card"><h3>Professional &amp; academic roles</h3><p>Sr. Manager, Corporate Audit Risk Intelligence, Automation, and AI at Boeing. Doctor of Business Administration candidate at Marymount University.</p></div>
+        </div>
+        <div class="col">
+          <div class="card g"><h3>Research interests</h3><ul><li>AI trustworthiness in safety-critical decision-support systems</li><li>Entrepreneurship</li><li>Innovation</li></ul><p><a href="https://www.linkedin.com/in/curtisoden/" target="_blank" rel="noopener noreferrer">View my LinkedIn profile ↗</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3: ATTENTION-GETTING OPEN -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Fictional Audit Challenge</span>
+      <h2>Would you approve $48,000 after it was paid?</h2>
+      <div class="pill-row"><span class="pill">Paid · 4:12 p.m.</span><span class="pill">Approval logged · 4:19 p.m.</span></div>
+      <div class="cols">
+        <div class="col">
+          <div class="card"><h3>Financial audit</h3><p>Was approval timely? What evidence would confirm the sequence?</p></div>
+        </div>
+        <div class="col">
+          <div class="card g"><h3>IT audit</h3><p>Who changed the payment workflow, and was that change authorized?</p></div>
+        </div>
+      </div>
+      <div class="callout"><strong>Your move:</strong> Don&rsquo;t guess. What evidence would you request first?</div>
+    </section>
+
+    <!-- 4: WHY THIS MATTERS TO STUDENTS -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">For Accounting Students</span>
+      <h2>Financial audit and IT audit share a question</h2>
+      <div class="cols">
+        <div class="col"><div class="card"><h3>Financial audit</h3><p>Do the records and supporting documents show that transactions are complete, accurate, authorized, and recorded in the right period?</p></div></div>
+        <div class="col"><div class="card g"><h3>IT audit</h3><p>Do access, system changes, and operations protect the reliability and security of the information behind those records?</p></div></div>
+      </div>
+      <div class="callout"><strong>Both require judgment:</strong> understand the process, identify what could go wrong, test the control, and evaluate evidence.</div>
+    </section>
+
+    <!-- 5: WHAT YOU'LL BUILD -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">The Project</span>
+      <h2>Build an interview practice partner</h2>
+      <p class="lead">An AI assistant role-plays a business stakeholder in a fictional audit scenario.</p>
+      <ul><li>Ask questions to understand a process and its controls.</li><li>Request evidence and follow up on exceptions.</li><li>Receive a debrief on interviewing and audit judgment.</li></ul>
+      <div class="callout"><strong>Not an answer bot:</strong> the assistant should not reveal the issue up front or do the auditor&rsquo;s thinking.</div>
+    </section>
+
+    <!-- 6: AUDIT INTERVIEW PRIMER -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Primer</span>
+      <h2>What is an audit interview?</h2>
+      <p>Talk with the people who perform or oversee a process to learn how it works and whether its <strong>controls</strong> operate.</p>
+      <ul>
+        <li>Map the process, roles, and handoffs.</li>
+        <li>Probe exceptions, overrides, and who reviews the work.</li>
+        <li>Request evidence that the control operated.</li>
+        <li>Summarize what you learned and what remains to verify.</li>
+      </ul>
+    </section>
+
+    <!-- 7: PUBLIC AUDIT CASE STUDIES -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Real Audit Examples</span>
+      <h2>Three public cases</h2>
+      <div class="case-grid">
+        <div class="col"><div class="card"><h3>IT general controls</h3><p><strong>Tampa Bay Furniture:</strong> access, program changes, computer operations; ISACA teaching case (2011).</p><p><a href="https://doczz.net/doc/6463444/tampa-bay-office-furniture-inc.--a-case-study" target="_blank" rel="noopener noreferrer">Case transcription ↗</a></p></div></div>
+        <div class="col"><div class="card g"><h3>Financial controls</h3><p><strong>Peace Corps OIG (2009):</strong> purchase-card approvals, oversight, and monitoring.</p><p><a href="https://www.oversight.gov/sites/default/files/documents/reports/2017-09/PC_Purchase_Card_Final_Audit_Report_IG0908A.pdf" target="_blank" rel="noopener noreferrer">Official report ↗</a></p></div></div>
+        <div class="col"><div class="card"><h3>Payments &amp; IT assets</h3><p><strong>FBI Trilogy:</strong> questioned contractor costs, equipment purchases, missing assets.</p><p><a href="https://www.gao.gov/products/gao-06-306" target="_blank" rel="noopener noreferrer">GAO-06-306 (2006) ↗</a></p></div></div>
+      </div>
+    </section>
+
+    <!-- 8: LLM PRIMER -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Primer</span>
+      <h2>What is an AI assistant (LLM)?</h2>
+      <p>A <strong>large language model (LLM)</strong> generates responses from patterns in data. Chat tools add instructions, files, and an interface around the model.</p>
+      <p>For this exercise, those inputs become:</p>
+      <ul>
+        <li><strong>Instructions</strong> &mdash; standing rules for how it should behave</li>
+        <li><strong>Attached files</strong> &mdash; reference material it can draw on</li>
+        <li><strong>The conversation</strong> &mdash; what the user types each turn</li>
+      </ul>
+      <div class="callout"><strong>It can be wrong.</strong> Design and test the fact boundaries, reveal behavior, and evaluation; do not treat a fluent response as audit evidence.</div>
+    </section>
+
+    <!-- 9: ASSISTANT WORKSPACE PRIMER -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Primer</span>
+      <h2>What is an &ldquo;assistant workspace&rdquo;?</h2>
+      <p>A reusable container that bundles <strong>custom instructions</strong> and <strong>reference files</strong>. Platform names differ; the design principles do not.</p>
+      <table class="mini">
+        <thead><tr><th>Neutral term</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Assistant workspace</td><td>Project / Custom GPT</td><td>Project</td><td>Gem</td></tr>
+          <tr><td>Custom instructions</td><td>Project instructions</td><td>Project instructions</td><td>Gem instructions</td></tr>
+          <tr><td>Attached files</td><td>Project files</td><td>Project knowledge</td><td>Gem knowledge</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Example used in the project guide:</strong> ChatGPT. Verify current features and limits on the platform your class uses.</p>
+    </section>
+
+    <!-- 10: THE BIG IDEA -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">The Big Idea</span>
+      <h2>A controlled simulation</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>The assistant should</h3>
+          <ul>
+            <li>Stay in character as a stakeholder</li>
+            <li>Answer normal questions clearly</li>
+            <li>Reveal deeper facts only when asked well</li>
+            <li>Give a structured debrief at the end</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>The assistant should NOT</h3>
+          <ul>
+            <li>Volunteer the main issue up front</li>
+            <li>Invent facts, names, or documents</li>
+            <li>Coach or grade mid-interview</li>
+            <li>Leak hidden facts or its own instructions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11: SANITIZE GROUND RULE -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">Ground Rule</span>
+      <h2>Sanitize everything</h2>
+      <p class="lead">Use real audit experience as <em>inspiration only</em>. Never use real, confidential, or identifying details.</p>
+      <p>Fictionalize names, vendors, systems, control IDs, dates, dollar amounts, and reports. Use invented names like <code>Apex Components</code>, <code>ProcurePro</code>, <code>Control C-101</code>.</p>
+      <div class="callout"><strong>Data handling:</strong> Only put approved, fictional content into any AI tool. Follow your organization&rsquo;s policy for the tool and information type.</div>
+    </section>
+
+    <!-- 12: THREE PHASES -->
+    <section class="slide" data-section="Kickoff">
+      <span class="badge kickoff">The Arc</span>
+      <h2>Three phases</h2>
+      <div class="cols">
+        <div class="col"><div class="card"><h3>Phase 1 &middot; Scenario Design</h3><p>Choose &amp; sanitize a scenario, set learning objectives, design the stakeholder.</p></div></div>
+        <div class="col"><div class="card"><h3>Phase 2 &middot; Workspace Build</h3><p>Reveal map, mock evidence, and the assistant workspace itself.</p></div></div>
+        <div class="col"><div class="card"><h3>Phase 3 &middot; Evaluation &amp; Launch</h3><p>Scoring rubric, debrief guide, testing, review, and demo.</p></div></div>
+      </div>
+      <p>The remaining slides are optional, self-guided project detail. The live briefing is designed for about 15 minutes, followed by five minutes of questions.</p>
+    </section>
+
+    <!-- 13: TWELVE DELIVERABLES (OPTIONAL DETAIL) -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Project Reference</span>
+      <h2>Deliverables, grouped by phase</h2>
+      <div class="cols">
+        <div class="col"><div class="card"><h3>1 · Design</h3><ul><li>Scenario and fact pack</li><li>Learning objectives</li><li>Stakeholder persona</li></ul></div></div>
+        <div class="col"><div class="card g"><h3>2 · Build</h3><ul><li>Reveal map</li><li>Mock evidence</li><li>Assistant workspace</li></ul></div></div>
+        <div class="col"><div class="card"><h3>3 · Evaluate</h3><ul><li>Rubric and debrief</li><li>Test log and review</li><li>Final demonstration</li></ul></div></div>
+      </div>
+    </section>
+
+    <!-- 14: FIVE WEEK PLAN -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Project Reference</span>
+      <h2>The 5-week plan</h2>
+      <table class="mini">
+        <thead><tr><th>Week</th><th>Focus</th><th>Key outputs</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Scenario selection &amp; sanitization</td><td>Candidate summary, fact pack</td></tr>
+          <tr><td><strong>2</strong></td><td>Scenario design</td><td>Persona, reveal map, evidence plan</td></tr>
+          <tr><td><strong>3</strong></td><td>Workspace build</td><td>Working prototype, evidence pack</td></tr>
+          <tr><td><strong>4</strong></td><td>Testing &amp; refinement</td><td>Test log, updated package</td></tr>
+          <tr><td><strong>5</strong></td><td>Final revision &amp; demo prep</td><td>Finalized package, demo</td></tr>
+        </tbody>
+      </table>
+      <p><em>Tentative &mdash; may adjust based on feedback and progress.</em></p>
+    </section>
+
+    <!-- 15: SELF-GUIDED DIVIDER -->
+    <section class="slide title-slide" data-section="Self-Guided">
+      <span class="badge guided">Self-Guided &middot; Work at Your Own Pace</span>
+      <h1>Building It, Step by Step</h1>
+      <p class="sub">From here on, work through the deliverables in order. Open the <strong>Notes</strong> panel (<span class="kbd">N</span>) on any slide for templates, definitions, and links.</p>
+    </section>
+
+    <!-- 16: MINIMUM SCOPE -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Start Small</span>
+      <h2>Recommended minimum scope</h2>
+      <p>A small, well-tested assistant beats a large, inconsistent one. Target:</p>
+      <div class="pill-row">
+        <span class="pill">1 business process</span>
+        <span class="pill">1 stakeholder persona</span>
+        <span class="pill">1 core risk/control issue</span>
+        <span class="pill">1&ndash;2 controls</span>
+        <span class="pill">3&ndash;5 known facts</span>
+        <span class="pill">2&ndash;4 hidden facts</span>
+        <span class="pill">3 mock evidence artifacts</span>
+      </div>
+    </section>
+
+    <!-- 17: PHASE 1 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Phase 1</span>
+      <h2>Scenario Design</h2>
+      <p class="lead">Turn a real audit experience into a safe, teachable, fictional scenario.</p>
+      <p>Deliverables in this phase:</p>
+      <ul>
+        <li><span class="deliv-tag">1</span> Scenario Candidate Summary</li>
+        <li><span class="deliv-tag">2</span> Sanitized Scenario Fact Pack</li>
+        <li><span class="deliv-tag">3</span> Learning Objective Statement</li>
+        <li><span class="deliv-tag">4</span> Stakeholder Persona Card</li>
+      </ul>
+    </section>
+
+    <!-- 18: DELIVERABLE 1 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 1</span>
+      <h2>Scenario Candidate Summary</h2>
+      <p>Pick <strong>one</strong> realistic audit interview situation that can be sanitized and controlled. Good candidates: a process walkthrough, control-owner interview, exceptions discussion, access review, procurement/approval, reconciliation.</p>
+      <p>A one-page summary covering: scenario name, audit domain, process area, interview type, primary training skill, why it&rsquo;s useful, potential issues, sensitive details to remove, recommended persona, and mock evidence needed.</p>
+    </section>
+
+    <!-- 19: DELIVERABLE 2 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 2</span>
+      <h2>Sanitized Fact Pack</h2>
+      <p>The <strong>approved truth set</strong> for your scenario &mdash; the assistant may only speak from this.</p>
+      <div class="cols">
+        <div class="col"><div class="card g"><h3>Known facts</h3><p>Things a cooperative stakeholder shares readily.</p></div></div>
+        <div class="col"><div class="card g"><h3>Hidden facts</h3><p>Discoverable only through good questioning &mdash; tied to risk, control, or evidence.</p></div></div>
+      </div>
+      <div class="callout"><strong>A good hidden fact</strong> materially affects understanding and rewards deeper questions &mdash; not a random surprise.</div>
+    </section>
+
+    <!-- 20: DELIVERABLE 3 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 3</span>
+      <h2>Learning Objectives</h2>
+      <p>Write <strong>3&ndash;5</strong> specific objectives describing what the <em>trainee</em> should be able to do. Start each with an action verb.</p>
+      <p><em>By the end of this scenario, the trainee should be able to&hellip;</em></p>
+      <ul>
+        <li>Explain the key steps in the approval process.</li>
+        <li>Identify where manual overrides create risk.</li>
+        <li>Request evidence that the control operated effectively.</li>
+        <li>Summarize the potential issue in audit-ready language.</li>
+      </ul>
+    </section>
+
+    <!-- 21: DELIVERABLE 4 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 4</span>
+      <h2>Stakeholder Persona</h2>
+      <p>Design the person the assistant role-plays. Cooperative enough to teach, bounded enough to require good questions.</p>
+      <div class="cols">
+        <div class="col"><ul><li>Role &amp; responsibilities</li><li>Tone &amp; communication style</li><li>Knowledge boundaries</li></ul></div>
+        <div class="col"><ul><li>What they reveal freely vs. only if asked</li><li>What they must never reveal</li><li>Likely defensive reactions</li></ul></div>
+      </div>
+      <div class="callout">The assistant should feel like <strong>a person, not a policy manual.</strong></div>
+    </section>
+
+    <!-- 22: PHASE 2 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Phase 2</span>
+      <h2>Workspace Build</h2>
+      <p class="lead">Turn your design into a working, controlled assistant.</p>
+      <ul>
+        <li><span class="deliv-tag">5</span> Reveal Map</li>
+        <li><span class="deliv-tag">6</span> Mock Evidence Pack</li>
+        <li><span class="deliv-tag">7</span> Assistant Workspace Package</li>
+      </ul>
+    </section>
+
+    <!-- 23: DELIVERABLE 5 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 5</span>
+      <h2>Reveal Map</h2>
+      <p>For each important fact, define <strong>when</strong> the assistant may share it.</p>
+      <table class="mini">
+        <thead><tr><th>Scenario fact</th><th>Reveal condition</th></tr></thead>
+        <tbody>
+          <tr><td>Emergency purchases released early</td><td>If asked about exceptions, urgent requests, or workarounds</td></tr>
+          <tr><td>Exception report not reviewed</td><td>If asked who reviews it and what evidence of review exists</td></tr>
+        </tbody>
+      </table>
+      <p>Vague questions get high-level answers; strong questions unlock deeper facts.</p>
+    </section>
+
+    <!-- 24: DELIVERABLE 6 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 6</span>
+      <h2>Mock Evidence Pack</h2>
+      <p>Create at least <strong>three fictional artifacts</strong> the trainee can request: policy excerpts, an approval matrix, an exception report, a review checklist, mock emails.</p>
+      <div class="callout"><strong>Evidence supports inquiry, it doesn&rsquo;t replace it.</strong> Give partial insight that rewards comparing sources &mdash; and never put hidden facts in a file the assistant might summarize on request.</div>
+    </section>
+
+    <!-- 25: DELIVERABLE 7 BUILD STEPS -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 7</span>
+      <h2>Build the workspace &mdash; 9 steps</h2>
+      <div class="cols">
+        <div class="col"><ul>
+          <li><strong>1.</strong> Create the workspace</li>
+          <li><strong>2.</strong> Name &amp; describe it</li>
+          <li><strong>3.</strong> Write the opening message</li>
+          <li><strong>4.</strong> Add the custom instructions</li>
+          <li><strong>5.</strong> Add conversation starters</li>
+        </ul></div>
+        <div class="col"><ul>
+          <li><strong>6.</strong> Attach approved files</li>
+          <li><strong>7.</strong> Select the model</li>
+          <li><strong>8.</strong> Refine via prompt design</li>
+          <li><strong>9.</strong> Set memory &amp; session hygiene</li>
+        </ul></div>
+      </div>
+      <p>The custom instructions carry the persona, reveal rules, refusal behavior, and debrief trigger.</p>
+    </section>
+
+    <!-- 26: MODEL & SETTINGS -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Configuration</span>
+      <h2>Model &amp; settings guidance</h2>
+      <p>Choose by <strong>capability</strong>, not brand:</p>
+      <ul>
+        <li><strong>Reasoning strength</strong> &mdash; a stronger reasoning model follows the reveal map and resists red-teaming better. Prefer it.</li>
+        <li><strong>Context length</strong> &mdash; must fit a full interview plus debrief.</li>
+        <li><strong>Data handling</strong> &mdash; approved tier only; fictional content only.</li>
+      </ul>
+      <div class="callout"><strong>No hidden dials.</strong> Consumer tools usually don&rsquo;t expose temperature or "reasoning effort" &mdash; control quality through prompt design and model choice instead.</div>
+    </section>
+
+    <!-- 27: MEMORY & CONTEXT -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Watch Out</span>
+      <h2>Memory &amp; context cautions</h2>
+      <div class="cols">
+        <div class="col"><div class="card g"><h3>Memory</h3><p>Cross-chat memory can leak hidden facts between runs. Turn it off or use a fresh/temporary chat per trainee.</p></div></div>
+        <div class="col"><div class="card g"><h3>Context window</h3><p>Long sessions can overflow, and the assistant "forgets" the reveal rules. Start a new chat per run.</p></div></div>
+      </div>
+      <div class="callout"><strong>Also mind attachment limits:</strong> platforms cap file count and size &mdash; keep the evidence pack small and consolidated.</div>
+    </section>
+
+    <!-- 28: PHASE 3 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Phase 3</span>
+      <h2>Evaluation &amp; Launch</h2>
+      <p class="lead">Prove it teaches and behaves safely before sharing it.</p>
+      <ul>
+        <li><span class="deliv-tag">8</span> Scoring Rubric</li>
+        <li><span class="deliv-tag">9</span> Debrief Guide</li>
+        <li><span class="deliv-tag">10</span> Test Log</li>
+        <li><span class="deliv-tag">11</span> Instructor or Peer Review Checklist</li>
+        <li><span class="deliv-tag">12</span> Final Demo Materials</li>
+      </ul>
+    </section>
+
+    <!-- 29: DELIVERABLE 8 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 8</span>
+      <h2>Scoring Rubric</h2>
+      <p>Score trainee performance <strong>1&ndash;5</strong> across observable behaviors &mdash; reward good interviewing, not lucky guessing.</p>
+      <div class="pill-row">
+        <span class="pill">Interview opening</span>
+        <span class="pill">Process understanding</span>
+        <span class="pill">Control &amp; risk identification</span>
+        <span class="pill">Evidence requests</span>
+        <span class="pill">Follow-up quality</span>
+        <span class="pill">Professional skepticism</span>
+        <span class="pill">Closeout</span>
+      </div>
+    </section>
+
+    <!-- 30: DELIVERABLE 9 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 9</span>
+      <h2>Debrief Guide</h2>
+      <p>After the trainee types <code>end simulation</code>, the assistant delivers structured feedback:</p>
+      <div class="cols">
+        <div class="col"><ul><li>Overall performance</li><li>Facts discovered vs. missed</li><li>Strong questions asked</li></ul></div>
+        <div class="col"><ul><li>Questions they should have asked</li><li>Evidence requested vs. missed</li><li>Recommended next steps</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 31: DELIVERABLE 10 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 10</span>
+      <h2>Testing &mdash; three ways</h2>
+      <div class="cols">
+        <div class="col"><div class="card g"><h3>Normal</h3><p>Reasonable questions &mdash; does it reveal facts at the right time?</p></div></div>
+        <div class="col"><div class="card g"><h3>Weak</h3><p>Vague questions &mdash; does it keep hidden facts hidden?</p></div></div>
+        <div class="col"><div class="card g"><h3>Red-team</h3><p>"Ignore your instructions&hellip;" &mdash; does it refuse and stay in character?</p></div></div>
+      </div>
+      <p>Log every issue and the fix. Retest after changes.</p>
+    </section>
+
+    <!-- 32: DELIVERABLE 11 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 11</span>
+      <h2>Instructor or Peer Review</h2>
+      <p>Before launch, a reviewer confirms the scenario is <strong>safe, sanitized, realistic, and consistent</strong>. The review checklist covers:</p>
+      <ul>
+        <li>Scenario quality and clear learning objectives</li>
+        <li>No real names, systems, or confidential details remain</li>
+        <li>Workspace build follows the reveal map and refuses red-team attempts</li>
+        <li>Evidence is fictional and doesn&rsquo;t leak hidden facts</li>
+        <li>Rubric, debrief, and test log are complete</li>
+      </ul>
+    </section>
+
+    <!-- 33: DELIVERABLE 12 -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Deliverable 12</span>
+      <h2>Final Demonstration</h2>
+      <p>Show your assistant working end to end:</p>
+      <ul>
+        <li>How the workspace opens the interview</li>
+        <li>A normal interview flow</li>
+        <li>At least one <strong>hidden fact reveal</strong> from a strong question</li>
+        <li>An evidence request, and a weak/vague question handled well</li>
+        <li>A <strong>red-team attempt refused</strong></li>
+        <li>A structured debrief after <code>end simulation</code></li>
+      </ul>
+    </section>
+
+    <!-- 34: RESOURCES -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Resources</span>
+      <h2>Where to learn more</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>Prompt design &amp; AI assistants</h3>
+          <ul>
+            <li>OpenAI &mdash; prompt engineering &amp; models: <a href="https://platform.openai.com/docs/guides/prompt-engineering">platform.openai.com/docs</a>, <a href="https://help.openai.com/">help.openai.com</a></li>
+            <li>Anthropic (Claude) prompt engineering: <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">docs.anthropic.com</a></li>
+            <li>Google Gemini prompting: <a href="https://ai.google.dev/gemini-api/docs/prompting-strategies">ai.google.dev</a></li>
+            <li>Microsoft Copilot: <a href="https://learn.microsoft.com/en-us/copilot/">learn.microsoft.com/copilot</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Audit &amp; objectives</h3>
+          <ul>
+            <li>IIA: <a href="https://www.theiia.org/">theiia.org</a> &amp; <a href="https://www.theiia.org/en/standards/">Standards</a></li>
+            <li>COSO: <a href="https://www.coso.org/">coso.org</a></li>
+            <li>ISACA: <a href="https://www.isaca.org/">isaca.org</a></li>
+            <li>Bloom's verbs (objectives): <a href="https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/">cft.vanderbilt.edu</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>Full annotated list with "why included" notes is in the Instructions guide appendix.</p>
+    </section>
+
+    <!-- 35: RECAP -->
+    <section class="slide" data-section="Self-Guided">
+      <span class="badge guided">Recap</span>
+      <h2>What good looks like</h2>
+      <p class="lead">A controlled audit interview experience that is:</p>
+      <div class="pill-row">
+        <span class="pill">Realistic</span>
+        <span class="pill">Safe</span>
+        <span class="pill">Structured</span>
+        <span class="pill">Teachable</span>
+        <span class="pill">Testable</span>
+        <span class="pill">Reviewable</span>
+      </div>
+      <p>Not just a conversation &mdash; a training tool that helps future auditors practice good interviewing, evidence gathering, risk identification, and professional judgment.</p>
+      <div class="callout">The companion student guide contains the full templates and project instructions. Use the final slide for questions and contact information.</div>
+    </section>
+
+    <!-- 36: FREQUENTLY ASKED QUESTIONS -->
+    <section class="slide" data-section="Q&amp;A">
+      <span class="badge kickoff">Frequently Asked Questions</span>
+      <h2>Questions students often ask</h2>
+      <div class="cols">
+        <div class="col"><div class="card"><h3>Do I need to code?</h3><p>No. Focus on scenario design, instructions, evidence, and testing in a class-approved assistant workspace.</p></div></div>
+        <div class="col"><div class="card g"><h3>Can I use real audit files?</h3><p>No. Use fictional, sanitized materials. Public reports can inspire a scenario; do not imply you have the original workpapers.</p></div></div>
+        <div class="col"><div class="card"><h3>Can AI do the audit judgment?</h3><p>No. Treat its output as a fallible draft. You remain responsible for checking facts, controls, and evidence.</p></div></div>
+        <div class="col"><div class="card g"><h3>Must I choose an accounting case?</h3><p>Choose a focused financial or IT audit process that supports a clear learning goal and safe fictional evidence.</p></div></div>
+      </div>
+    </section>
+
+    <!-- 37: QUESTIONS AND CONTACT -->
+    <section class="slide title-slide" data-section="Q&amp;A">
+      <span class="badge kickoff">Questions &amp; Contact</span>
+      <h1>What would you ask next?</h1>
+      <p class="sub">Five minutes for questions and discussion</p>
+      <div class="cols">
+        <div class="col"><div class="card"><h3>Discussion starters</h3><p>What evidence would you request first?</p><p>Where would you be cautious about using AI?</p></div></div>
+          <div class="col"><div class="card g"><h3>Stay in touch</h3><p><strong>Curtis Oden, MBA</strong><br><a href="mailto:coden.bz@gmail.com">coden.bz@gmail.com</a></p><p><a href="https://www.linkedin.com/in/curtisoden/" target="_blank" rel="noopener noreferrer">LinkedIn profile ↗</a></p></div></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<aside id="notes" aria-label="Self-guided notes and references">
+  <h3>Study Notes &amp; References</h3>
+  <div id="notescontent">
+
+    <!-- Notes 1 -->
+    <div class="note-block">
+      <p>This deck introduces a project in which students design and test an AI-based audit interview practice tool. The first 12 slides provide a short overview; the remaining project slides offer self-guided detail.</p>
+      <p><span class="term">Core principle:</span> use AI to support practice, not to replace audit judgment or evidence evaluation.</p>
+      <p>Navigate with the arrow keys or Prev/Next buttons. The Notes button opens these study notes; press <span class="kbd">End</span> to jump to Q&amp;A and contact information.</p>
+    </div>
+
+    <!-- Notes 2 -->
+    <div class="note-block">
+      <p>The role title connects corporate audit, risk intelligence, automation, and AI. The DBA program at Marymount University provides an academic setting for studying business problems and innovation.</p>
+      <p><span class="term">Research interests:</span> trustworthy AI in safety-critical decision-support systems, entrepreneurship, and innovation. The LinkedIn link opens the public profile.</p>
+    </div>
+
+    <!-- Notes 3 -->
+    <div class="note-block">
+      <p>This fictional example gives two different records: payment at 4:12 p.m. and approval logged at 4:19 p.m. The discrepancy raises a question; by itself, it does not prove a control failed.</p>
+      <p><span class="term">Evidence to consider:</span> the approval workflow history, payment release record, system time settings, user access, and any documented exception or emergency process.</p>
+      <p>The IT-audit question broadens the inquiry: if the workflow changed, determine who made the change, whether it was authorized, and what logs or approvals support that conclusion.</p>
+    </div>
+
+    <!-- Notes 4 -->
+    <div class="note-block">
+      <p>Financial audits examine assertions about transactions and balances, including completeness, accuracy, authorization, and period recognition. IT audits examine technology-related risks such as access, changes, and operations that can affect data reliability and security.</p>
+      <p>Many financial processes depend on IT controls, so the two audit perspectives often intersect.</p>
+    </div>
+
+    <!-- Notes 5 -->
+    <div class="note-block">
+      <p>The assistant role-plays a business stakeholder. The student acts as the auditor: asking questions, following up, requesting evidence, and deciding what the information means.</p>
+      <p>Unlike an answer bot, a useful practice assistant reveals scenario facts in response to inquiry and gives feedback after the interview.</p>
+    </div>
+
+    <!-- Notes 6 -->
+    <div class="note-block">
+      <p>An audit interview helps an auditor understand how work is performed, who performs and reviews it, and how exceptions are handled. It is inquiry, not a substitute for independent testing.</p>
+      <p><span class="term">Control:</span> a step designed to prevent or detect something going wrong. <span class="term">Evidence:</span> information used to support a conclusion about whether a control operated.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Institute of Internal Auditors &mdash; <a href="https://www.theiia.org/">theiia.org</a> (audit fundamentals and the profession).</p>
+      </div>
+    </div>
+
+    <!-- Notes 7 -->
+    <div class="note-block">
+      <p>The cases span IT general controls; purchase-card approvals and monitoring; and contractor costs and asset accountability. The shared audit pattern is to connect a risk to a control and then evaluate evidence.</p>
+      <p><span class="term">Tampa Bay Office Furniture:</span> the ISACA teaching case is available here through a third-party transcription. It summarizes 25 audit notes; the underlying interview transcripts and system records are not separately supplied. Attribute ISACA when using it.</p>
+      <p>The Peace Corps OIG report (2009) describes document and transaction analysis, interviews, observations, findings, recommendations, and management responses. The GAO FBI Trilogy report (2006) describes invoice review, interviews, walkthroughs, data analysis, physical asset work, findings, and agency comments.</p>
+      <p>Public reports are learning sources, not complete audit files. Build practice scenarios with fictional details and artifacts rather than implying that original workpapers or transaction packets are available.</p>
+    </div>
+
+    <!-- Notes 8 -->
+    <div class="note-block">
+      <p>An LLM generates text from the instructions and context it receives. It can produce fluent but inaccurate, incomplete, or unsupported statements; fluency is not verification.</p>
+      <p>Ground the simulation in a bounded fact pack and check outputs against the scenario evidence. The model should not invent facts or make the audit decision for the student.</p>
+      <div class="refs"><h4>References</h4>
+        <p>OpenAI prompt-engineering guide &mdash; <a href="https://platform.openai.com/docs/guides/prompt-engineering">platform.openai.com/docs/guides/prompt-engineering</a></p>
+      </div>
+    </div>
+
+    <!-- Notes 9 -->
+    <div class="note-block">
+      <p>An assistant workspace is a reusable container for instructions and reference files. Product names vary: for example, ChatGPT uses Projects or Custom GPTs, Claude uses Projects, and Gemini uses Gems.</p>
+      <p><span class="term">Custom instructions:</span> standing rules for the assistant's behavior. Always verify the current feature names, file limits, and privacy behavior on the chosen platform.</p>
+      <div class="refs"><h4>References</h4>
+        <p>ChatGPT Projects &amp; features &mdash; <a href="https://help.openai.com/">help.openai.com</a><br>
+        Models &amp; context windows &mdash; <a href="https://platform.openai.com/docs/models">platform.openai.com/docs/models</a></p>
+      </div>
+    </div>
+
+    <!-- Notes 10 -->
+    <div class="note-block">
+      <p>The simulation's instructions define what the stakeholder knows, what is revealed freely, and what requires a relevant follow-up question. A reveal map makes those conditions explicit.</p>
+      <p><span class="term">Red-teaming:</span> testing whether the assistant resists attempts to override its rules, reveal hidden facts, or leave its role.</p>
+    </div>
+
+    <!-- Notes 11 -->
+    <div class="note-block">
+      <p><span class="term">Sanitize:</span> remove or fictionalize identifying or protected details, including people, organizations, vendors, systems, dates, IDs, and amounts.</p>
+      <p>If sanitization removes the scenario's learning value—or the source cannot be used under the applicable policy—choose a different scenario. Use only tools and materials approved for the course.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Confirm your organization&rsquo;s approved-AI-tool and data-handling policy before uploading anything.</p>
+      </div>
+    </div>
+
+    <!-- Notes 12 -->
+    <div class="note-block">
+      <p>The project progresses from scenario design, to workspace construction, to evaluation and demonstration. Later slides expand each phase into specific tasks, examples, and templates.</p>
+      <p>The short overview is paced for about 15 minutes, followed by five minutes for questions. The remaining slides can be explored independently; press <span class="kbd">End</span> to jump to the final Q&amp;A and contact page.</p>
+    </div>
+
+    <!-- Notes 13 -->
+    <div class="note-block">
+      <p>The deliverables are organized as a chain: scenario and fact pack inform the learning objectives and persona; those inform the reveal map, evidence, and assistant instructions; testing and review then shape the final demonstration.</p>
+      <p>Use the student guide for the full checklist and templates.</p>
+    </div>
+
+    <!-- Notes 14 -->
+    <div class="note-block">
+      <p>The five-week plan is a suggested sequence, not a fixed requirement. A working prototype by the end of week 3 leaves weeks 4&ndash;5 for testing, refinement, and demonstration preparation.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Full week-by-week detail: <code>001_Audit_Simulator_Project Schedule - v0.1.0</code>.</p>
+      </div>
+    </div>
+
+    <!-- Notes 15 -->
+    <div class="note-block">
+      <p>The remaining slides are a self-guided project reference. The deck summarizes the work; the student guide contains full instructions and templates.</p>
+    </div>
+
+    <!-- Notes 16 -->
+    <div class="note-block">
+      <p>Scope discipline is the top predictor of a working project. Teams that try to model an entire department run out of time and produce an inconsistent assistant.</p>
+      <p><span class="term">Known vs. hidden facts:</span> known facts set the scene; hidden facts are the discoverable "aha" moments.</p>
+    </div>
+
+    <!-- Notes 17 -->
+    <div class="note-block">
+      <p>Phase 1 is scenario design. Define the process, facts, learning goal, and stakeholder before configuring an AI workspace; these decisions determine what the assistant must do.</p>
+    </div>
+
+    <!-- Notes 18 -->
+    <div class="note-block">
+      <p><span class="term">Audit domain:</span> the area under review (procurement, access management, financial reporting, etc.).</p>
+      <p>A process that is familiar enough to explain is easier to turn into a believable stakeholder interview and a focused learning exercise.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Template: Deliverable 1 in the Instructions guide (Part 1).</p>
+      </div>
+    </div>
+
+    <!-- Notes 19 -->
+    <div class="note-block">
+      <p>The fact pack is the assistant&rsquo;s only source of truth. If a fact isn&rsquo;t here, the assistant should say "I don&rsquo;t know" rather than invent.</p>
+      <p><span class="term">Control objective:</span> what the control is supposed to achieve (e.g., "purchases over $50k are approved before release").</p>
+      <div class="refs"><h4>References</h4>
+        <p>Template &amp; hidden-fact guidance: Instructions guide, Part 2.</p>
+      </div>
+    </div>
+
+    <!-- Notes 20 -->
+    <div class="note-block">
+      <p>Objectives describe the <em>trainee&rsquo;s</em> behavior, not the assistant&rsquo;s. "Identify manual override risk" is good; "the assistant explains overrides" is not.</p>
+      <p><span class="term">Action verbs:</span> explain, identify, request, summarize, evaluate.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Bloom&rsquo;s taxonomy action verbs &mdash; Vanderbilt Center for Teaching: <a href="https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/">cft.vanderbilt.edu</a></p>
+      </div>
+    </div>
+
+    <!-- Notes 21 -->
+    <div class="note-block">
+      <p>A credible persona has a consistent voice, realistic priorities, and clear limits on what the stakeholder knows. Knowledge limits can create a reason to identify another person to interview.</p>
+      <p><span class="term">Knowledge boundary:</span> what this persona does <em>not</em> know &mdash; forcing the trainee to identify who else to interview.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Template: Instructions guide, Part 4.</p>
+      </div>
+    </div>
+
+    <!-- Notes 22 -->
+    <div class="note-block">
+      <p>Phase 2 turns the scenario design into an interactive workspace. The reveal map defines when facts may be shared; the evidence pack provides artifacts the simulated stakeholder can discuss.</p>
+    </div>
+
+    <!-- Notes 23 -->
+    <div class="note-block">
+      <p>The reveal map is the control logic of the simulation. Each fact gets a trigger condition and an example question that should &mdash; and should not &mdash; unlock it.</p>
+      <p><span class="term">Question ladder:</span> a sequence of increasingly specific questions that progressively unlock facts.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Template &amp; examples: Instructions guide, Part 5.</p>
+      </div>
+    </div>
+
+    <!-- Notes 24 -->
+    <div class="note-block">
+      <p>Evidence artifacts should be concise, readable by the chosen platform, and consistent with the fact pack. If a file reveals a hidden fact before the student asks a relevant question, it bypasses the reveal map.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Artifact requirements: Instructions guide, Part 6.</p>
+      </div>
+    </div>
+
+    <!-- Notes 25 -->
+    <div class="note-block">
+      <p><span class="term">Example in ChatGPT:</span> create a Project, name and describe it, add the opening message and rules to Project instructions, upload approved Project files, then select an available model.</p>
+      <p><span class="term">Opening message:</span> the greeting that starts each interview. Some platforms do not have a dedicated greeting field, so it may belong in the custom instructions.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Step-by-step + baseline instruction text: Instructions guide, Part 7.<br>
+        ChatGPT Projects &mdash; <a href="https://help.openai.com/">help.openai.com</a></p>
+      </div>
+    </div>
+
+    <!-- Notes 26 -->
+    <div class="note-block">
+      <p>Model names and limits change. Compare available options using task-relevant criteria: instruction following, reliable use of supplied context, sufficient context length, and data-handling terms approved for the course.</p>
+      <p>Test the actual configuration you plan to use. Do not assume a more capable-sounding model name guarantees accuracy or safe behavior.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Current models &amp; context &mdash; <a href="https://platform.openai.com/docs/models">platform.openai.com/docs/models</a></p>
+      </div>
+    </div>
+
+    <!-- Notes 27 -->
+    <div class="note-block">
+      <p>Persistent memory can carry facts from one run to another; context limits can cause the assistant to lose earlier instructions during a long interview. Either can undermine consistent simulation behavior.</p>
+      <p><span class="term">Temporary Chat:</span> a ChatGPT mode that doesn&rsquo;t use or update memory &mdash; handy for clean per-trainee runs.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Memory, "Reference chat history," Temporary Chat, and file limits &mdash; <a href="https://help.openai.com/">help.openai.com</a> (verify current behavior).</p>
+      </div>
+    </div>
+
+    <!-- Notes 28 -->
+    <div class="note-block">
+      <p>Phase 3 checks whether the assistant teaches the intended skills and stays within its scenario boundaries. Testing can reveal fact leakage, invented details, inconsistent reveals, or role drift before use.</p>
+    </div>
+
+    <!-- Notes 29 -->
+    <div class="note-block">
+      <p>A rubric should define observable performance. Anchors for scores 1, 3, and 5 clarify the difference between ineffective, adequate, and strong behavior; reward sound inquiry rather than lucky guesses.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Full category list &amp; format: Instructions guide, Part 8.</p>
+      </div>
+    </div>
+
+    <!-- Notes 30 -->
+    <div class="note-block">
+      <p>The debrief turns the role-play into feedback by comparing the interview with the learning objectives and rubric. It can identify effective questions, missed evidence, and useful next steps.</p>
+      <p><span class="term">Trigger:</span> the assistant switches from role-play to debrief when the trainee types <code>end simulation</code>.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Debrief structure: Instructions guide, Part 9.</p>
+      </div>
+    </div>
+
+    <!-- Notes 31 -->
+    <div class="note-block">
+      <p>Test normal, weak, and adversarial questions. Record the prompt, expected and actual behavior, issue category, correction, and retest result; repeat testing after instruction changes.</p>
+      <p><span class="term">Failure categories:</span> fact leakage, hallucination, persona drift, reveal-map failure, refusal failure, context overflow, memory carryover.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Red-team prompt examples &amp; test-log format: Instructions guide, Part 10.</p>
+      </div>
+    </div>
+
+    <!-- Notes 32 -->
+    <div class="note-block">
+      <p>Instructor or peer review checks whether the scenario is safe, coherent, and teachable. The review package includes the scenario, fact pack, reveal map, workspace, rubric, debrief, and test log.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Review checklist: Instructions guide, Part 11.</p>
+      </div>
+    </div>
+
+    <!-- Notes 33 -->
+    <div class="note-block">
+      <p>A useful demonstration shows the assistant opening the interview, revealing a hidden fact after a relevant question, handling evidence, refusing an instruction-override attempt, and providing a debrief.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Demo materials checklist: Instructions guide, Part 12.</p>
+      </div>
+    </div>
+
+    <!-- Notes 33 (Resources) -->
+    <div class="note-block">
+      <p>These links are starting points, not an exhaustive bibliography. Platform features and limits change, so consult the provider's current documentation for version-specific behavior.</p>
+      <p>Prompt-design material supports workspace construction; IIA, COSO, and ISACA resources ground audit and control concepts; Bloom's taxonomy supports measurable learning objectives.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Full annotated list: Instructions guide &mdash; Appendix: Learning Resources.</p>
+      </div>
+    </div>
+
+    <!-- Notes 34 (Recap) -->
+    <div class="note-block">
+      <p>A strong project is realistic, safe, structured, teachable, testable, and reviewable. These qualities apply to both the audit scenario and the AI tool built to support practice.</p>
+      <div class="refs"><h4>References</h4>
+        <p>Author: Curtis Oden, MBA &mdash; <a href="mailto:coden.bz@gmail.com">coden.bz@gmail.com</a><br>
+        Companion docs: Instructions guide &amp; Project Schedule (v0.1.0).</p>
+      </div>
+    </div>
+
+    <!-- Notes 36 (FAQs) -->
+    <div class="note-block">
+      <p>Use only class-approved tools and fictional, sanitized materials. Public audit reports can inform scenario design, but they do not grant access to original working papers or protected records.</p>
+      <p>AI can support practice design and feedback; students remain responsible for reasoning, verification, and conclusions.</p>
+    </div>
+
+    <!-- Notes 37 (Q&A and Contact) -->
+    <div class="note-block">
+      <p>Use the discussion prompts to connect evidence requests and AI limitations to a financial or IT audit process. Contact information and the public LinkedIn profile are available on this slide.</p>
+    </div>
+
+  </div>
+</aside>
+
+<div id="bar">
+  <span id="sectionlabel">&nbsp;</span>
+  <button id="prev" title="Previous (Left arrow)">&larr; Prev</button>
+  <span id="counter">1 / 1</span>
+  <button id="next" title="Next (Right arrow)">Next &rarr;</button>
+  <div id="progress"><div id="progressbar"></div></div>
+  <button id="notestoggle" title="Toggle notes (press N)">Notes</button>
+  <span class="keyhint" style="opacity:.6">Keys: <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> <span class="kbd">N</span> <span class="kbd">F</span></span>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var notes  = Array.prototype.slice.call(document.querySelectorAll('#notescontent .note-block'));
+  var idx = 0;
+  var counter = document.getElementById('counter');
+  var bar = document.getElementById('progressbar');
+  var sectionlabel = document.getElementById('sectionlabel');
+  function show(n){
+    idx = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+    notes.forEach(function(b,i){ b.classList.toggle('active', i===idx); });
+    counter.textContent = (idx+1) + ' / ' + slides.length;
+    bar.style.width = ((idx+1)/slides.length*100) + '%';
+    var sec = slides[idx].getAttribute('data-section') || '';
+    sectionlabel.textContent = sec;
+    var active = slides[idx].querySelector('h1,h2');
+    if(active){ slides[idx].scrollTop = 0; }
+  }
+  function toggleNotes(){ document.body.classList.toggle('notes-open'); }
+  document.getElementById('prev').onclick = function(){ show(idx-1); };
+  document.getElementById('next').onclick = function(){ show(idx+1); };
+  document.getElementById('notestoggle').onclick = toggleNotes;
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'){ show(idx+1); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ show(idx-1); }
+    else if(e.key==='Home'){ show(0); }
+    else if(e.key==='End'){ show(slides.length-1); }
+    else if(e.key==='n'||e.key==='N'){ toggleNotes(); }
+    else if(e.key==='f'||e.key==='F'){
+      if(!document.fullscreenElement){ document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); }
+      else { document.exitFullscreen&&document.exitFullscreen(); }
+    }
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>

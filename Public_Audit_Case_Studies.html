@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Audit Case Studies</title>
+<style>
+  :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; background:#0b1220; color:#f8fafc }
+  * { box-sizing:border-box }
+  body { margin:0; min-height:100vh }
+  main { min-height:100vh }
+  .slide { display:none; min-height:100vh; padding:clamp(2rem,5vw,5rem) clamp(1.5rem,7vw,7rem) 7rem; background:radial-gradient(circle at 90% 0%,#1e395a 0,transparent 42%),#0b1220 }
+  .slide.active { display:flex; flex-direction:column; justify-content:center }
+  .eyebrow { color:#77d9cc; text-transform:uppercase; letter-spacing:.17em; font-size:.85rem; font-weight:750 }
+  h1 { font-size:clamp(2.5rem,5vw,5rem); line-height:1.06; letter-spacing:-.045em; max-width:1100px; margin:.5rem 0 1rem }
+  .deck { color:#b8c9df; font-size:clamp(1.15rem,2vw,1.5rem); line-height:1.45; max-width:980px; margin:0 0 2rem }
+  .columns { display:grid; grid-template-columns:1fr 1fr; gap:clamp(1rem,3vw,3rem); max-width:1250px }
+  .card { background:#162438; border:1px solid #39516d; border-radius:18px; padding:clamp(1.2rem,2.5vw,2.2rem) }
+  h2 { margin:0 0 .9rem; font-size:1.2rem; color:#a5ecdf }
+  p, li { font-size:clamp(1rem,1.25vw,1.18rem); line-height:1.55 }
+  p { margin:.5rem 0 1rem }
+  ul { margin:.2rem 0 0; padding-left:1.3rem }
+  li+li { margin-top:.45rem }
+  .source { margin-top:1.3rem; overflow-wrap:anywhere }
+  a { color:#a9e8ff; text-decoration-thickness:2px; text-underline-offset:4px }
+  a:focus-visible, button:focus-visible { outline:3px solid #ffcd76; outline-offset:4px }
+  .note { margin-top:1.7rem; color:#b8c9df; max-width:1100px; font-size:.97rem }
+  nav { position:fixed; bottom:0; left:0; right:0; padding:1rem clamp(1.5rem,7vw,7rem); background:#0b1220ee; border-top:1px solid #39516d; display:flex; gap:1rem; align-items:center; justify-content:space-between }
+  button { background:#234768; color:#fff; border:1px solid #6384a5; border-radius:9px; padding:.65rem 1rem; font:inherit; cursor:pointer }
+  button:disabled { opacity:.45; cursor:default }
+  #counter { color:#b8c9df }
+  @media(max-width:760px) { .columns { grid-template-columns:1fr } .slide { justify-content:flex-start; padding-top:2.4rem } nav { position:sticky } }
+  @media print { :root { color-scheme:light } .slide,.slide.active { display:flex; color:#172033; background:white; min-height:100vh; break-after:page; padding:5vw } .card { background:white; border-color:#667 } .eyebrow,h2,a { color:#164d64 } .deck,.note { color:#344 } nav { display:none } }
+</style>
+</head>
+<body>
+<main>
+  <section class="slide active" aria-label="Case 1 of 3">
+    <div class="eyebrow">Case 01 · IT general controls · ISACA teaching case</div>
+    <h1>Tampa Bay Office Furniture</h1>
+    <p class="deck">A fictional office-furniture manufacturer with an AS/400 accounting system. The audit team reviews system access, program changes, and computer operations.</p>
+    <div class="columns">
+      <div class="card"><h2>Material in the case</h2><ul><li>25 numbered audit notes drawn from staff interviews, auditor observations, system documentation, and logs.</li><li>Context about the company and IT environment.</li><li>An exercise asking readers to assess controls and propose tests.</li></ul></div>
+      <div class="card"><h2>Source</h2><p>ISACA, <em>Tampa Bay Office Furniture Inc.: A Case Study</em> (2011).</p><p class="source"><a href="https://doczz.net/doc/6463444/tampa-bay-office-furniture-inc.--a-case-study" target="_blank" rel="noopener noreferrer">Open public case transcription ↗</a></p><p>The accessible link is a third-party transcription of the ISACA publication. Attribute ISACA when using the case.</p></div>
+    </div>
+    <p class="note">The notes are already assembled as a teaching case; individual underlying logs and interview transcripts are not supplied separately.</p>
+  </section>
+  <section class="slide" aria-label="Case 2 of 3">
+    <div class="eyebrow">Case 02 · Financial / operational controls · OIG audit</div>
+    <h1>Peace Corps Purchase Card Program</h1>
+    <p class="deck">An audit of policies, cardholder oversight, purchase approval, monitoring, and risk assessment in the Peace Corps purchase-card program.</p>
+    <div class="columns">
+      <div class="card"><h2>Material in the report</h2><ul><li>Audit scope and methods, including document and transaction analysis, interviews, and direct observations.</li><li>Reported transaction exceptions and control observations.</li><li>Findings, recommendations, and management responses.</li></ul></div>
+      <div class="card"><h2>Source</h2><p>Peace Corps Office of Inspector General, <em>Final Audit Report: Peace Corps’ Purchase Card Program</em> (2009).</p><p class="source"><a href="https://www.oversight.gov/sites/default/files/documents/reports/2017-09/PC_Purchase_Card_Final_Audit_Report_IG0908A.pdf" target="_blank" rel="noopener noreferrer">Open official report PDF ↗</a></p><p>48-page report hosted by Oversight.gov.</p></div>
+    </div>
+    <p class="note">Interviews and transaction evidence are reported in the audit; the original interview transcripts and complete transaction packets are not included.</p>
+  </section>
+  <section class="slide" aria-label="Case 3 of 3">
+    <div class="eyebrow">Case 03 · Contractor payments / IT assets · GAO audit</div>
+    <h1>FBI Trilogy Project</h1>
+    <p class="deck">An audit of contractor invoice review, questioned project costs, equipment purchasing, and accountability for assets acquired during a major FBI technology program.</p>
+    <div class="columns">
+      <div class="card"><h2>Material in the report</h2><ul><li>Audit objectives and methods, including invoice review, interviews, walkthroughs, data analysis, and physical asset work.</li><li>Examples of questionable costs and missing-asset results.</li><li>GAO conclusions, recommendations, and agency comments.</li></ul></div>
+      <div class="card"><h2>Source</h2><p>U.S. Government Accountability Office, <em>Weak Controls over Trilogy Project Led to Payment of Questionable Contractor Costs and Missing Assets</em>, GAO-06-306 (2006).</p><p class="source"><a href="https://www.gao.gov/products/gao-06-306" target="_blank" rel="noopener noreferrer">Open official GAO report ↗</a></p><p>The GAO page provides the report and download options.</p></div>
+    </div>
+    <p class="note">The public report contains audit results and selected examples; full invoices, interview transcripts, and audit working papers are not included.</p>
+  </section>
+</main>
+<nav aria-label="Slide controls"><button id="previous" type="button" aria-label="Previous slide">← Previous</button><span id="counter" aria-live="polite">1 / 3</span><button id="next" type="button" aria-label="Next slide">Next →</button></nav>
+<script>
+  const slides=[...document.querySelectorAll('.slide')]; let current=0;
+  const previous=document.getElementById('previous'), next=document.getElementById('next'), counter=document.getElementById('counter');
+  function show(index){ current=Math.max(0,Math.min(index,slides.length-1)); slides.forEach((slide,i)=>{slide.classList.toggle('active',i===current);slide.setAttribute('aria-hidden',i!==current)});previous.disabled=current===0;next.disabled=current===slides.length-1;counter.textContent=`${current+1} / ${slides.length}`;location.hash=`slide-${current+1}`;window.scrollTo(0,0) }
+  previous.addEventListener('click',()=>show(current-1));next.addEventListener('click',()=>show(current+1));
+  document.addEventListener('keydown',event=>{if(['ArrowRight','PageDown',' '].includes(event.key)&&!['A','BUTTON'].includes(document.activeElement.tagName)){event.preventDefault();show(current+1)}if(['ArrowLeft','PageUp'].includes(event.key)&&!['A','BUTTON'].includes(document.activeElement.tagName)){event.preventDefault();show(current-1)}});
+  const initial=Number(location.hash.match(/^#slide-(\d+)$/)?.[1]||1);show(initial-1);
+</script>
+</body>
+</html>
