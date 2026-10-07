@@ -18,4 +18,4 @@ All people, organizations, services, records, and email addresses in these mater
 
 These original classroom materials are offered under the repository's CC BY 4.0 license. Each activity artifact contains a QR image that encodes its rendered GitHub Pages URL (`.html`). QR images are served on demand by QuickChart. Role cards are public repository files; distribute each card only to the assigned auditee, not the auditor.
 
-![QR code to this improv activity index](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2FREADME.html)
+![QR code to the hosted improv activity index](https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Findex.html)
