@@ -10,7 +10,7 @@ Pair activity for practicing an audit interview before designing an AI interview
 - [Scenario 1: data subscription receipt](artifacts/data-subscription-receipt.md)
 - [Scenario 2: meal-service trial email](artifacts/meal-service-trial-email.md)
 - [Scenario 3: suspicious hosting email](artifacts/suspicious-hosting-email.md)
-- Twelve auditee [role cards](role-cards/): each combination of four communication styles and three scenarios.
+- Twelve auditee [role cards](role-cards/): three scenarios crossed with four lettered personalities — A Over-sharer, B Terse responder, C Disgruntled employee, and D Smooth operator.
 
 All people, organizations, services, records, and email addresses in these materials are fictional. Pay Buddy is a fictional payment-platform display name. The materials are classroom simulation props, not actual audit evidence or a statement of any institution's policy.
 

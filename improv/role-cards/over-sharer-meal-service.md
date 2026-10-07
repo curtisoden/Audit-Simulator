@@ -1,4 +1,4 @@
-# Auditee Role Card — Over-Sharer × Meal-Service Trial
+# Auditee Role Card — Personality A: Over-Sharer × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. The spouse's [email](../artifacts/meal-service-trial-email.md) is available only after you recall the purchase and the auditor requests corroboration.
 

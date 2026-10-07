@@ -1,4 +1,4 @@
-# Auditee Role Card — Terse Responder × Meal-Service Trial
+# Auditee Role Card — Personality B: Terse Responder × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The spouse's [email](../artifacts/meal-service-trial-email.md) is available if you are asked to corroborate the purchase and share documentation.
 

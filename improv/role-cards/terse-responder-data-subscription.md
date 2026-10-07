@@ -1,4 +1,4 @@
-# Auditee Role Card — Terse Responder × Data Subscription
+# Auditee Role Card — Personality B: Terse Responder × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. Your receipt is [here](../artifacts/data-subscription-receipt.md), but provide it only if requested.
 

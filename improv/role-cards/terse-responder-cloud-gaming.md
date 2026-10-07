@@ -1,4 +1,4 @@
-# Auditee Role Card — Terse Responder × Cloud-Gaming Subscription
+# Auditee Role Card — Personality B: Terse Responder × Cloud-Gaming Subscription
 
 **Do not show this card to the auditor.** You are the employee. The [purported CloudQuarry email](../artifacts/suspicious-hosting-email.md) is a fabricated prop. Provide it only if asked for hosting/project documentation.
 

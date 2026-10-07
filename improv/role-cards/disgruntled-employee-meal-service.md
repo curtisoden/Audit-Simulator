@@ -1,4 +1,4 @@
-# Auditee Role Card — Disgruntled Employee × Meal-Service Trial
+# Auditee Role Card — Personality C: Disgruntled Employee × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The spouse's [email](../artifacts/meal-service-trial-email.md) is available if the auditor asks for follow-up or evidence.
 

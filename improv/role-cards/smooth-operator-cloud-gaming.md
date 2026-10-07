@@ -1,4 +1,4 @@
-# Auditee Role Card — Smooth Operator × Cloud-Gaming Subscription
+# Auditee Role Card — Personality D: Smooth Operator × Cloud-Gaming Subscription
 
 **Do not show this card to the auditor.** You are the employee. The [purported CloudQuarry email](../artifacts/suspicious-hosting-email.md) is fabricated. Provide it only if asked for hosting/project support.
 

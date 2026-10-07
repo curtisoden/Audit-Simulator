@@ -1,4 +1,4 @@
-# Auditee Role Card — Over-Sharer × Data Subscription
+# Auditee Role Card — Personality A: Over-Sharer × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. Use the transaction list the auditor brings; the matching [receipt](../artifacts/data-subscription-receipt.md) is available only if requested.
 

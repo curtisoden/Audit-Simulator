@@ -1,4 +1,4 @@
-# Auditee Role Card — Smooth Operator × Data Subscription
+# Auditee Role Card — Personality D: Smooth Operator × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. Your [receipt](../artifacts/data-subscription-receipt.md) is available on request.
 

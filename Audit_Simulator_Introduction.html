@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Curtis Oden, MBA">
+<meta name="description" content="A brief pitch for Marymount accounting students to join the five-week Audit Simulator project.">
+<meta name="dcterms.created" content="2026-10-07">
+<title>Audit Simulator - Student Project Pitch</title>
+<style>
+:root{
+  --fg:#16202b; --muted:#5a6673; --accent:#0b5cad; --accent-dark:#0b3f7a;
+  --green:#0a7d55; --bg:#fff; --deck-bg:#0d1a2b; --border:#d8dde3;
+  --soft:#f5f7fa; --warm:#fff4ea; --notes-width:min(420px,30vw);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;}
+body{background:var(--deck-bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;display:flex;justify-content:center;align-items:stretch}
+#slidewrap{min-width:0;flex:1;display:flex;justify-content:center;align-items:center;padding:1.5vh 1.5vw;transition:margin-right .25s ease}
+body.notes-open #slidewrap{margin-right:var(--notes-width)}
+.slide{display:none;width:100%;max-width:1700px;height:calc(100vh - 68px);overflow:auto;background:var(--bg);border-radius:14px;box-shadow:0 18px 50px #0007;padding:clamp(22px,3vw,54px);animation:fade .25s ease}
+.slide.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1,h2,h3,p,ul{margin-top:0}
+.slide h1{font-size:clamp(2rem,4.4vw,4rem);line-height:1.08;margin:.15em 0 .35em;letter-spacing:-.025em}
+.slide h2{font-size:clamp(1.55rem,2.65vw,2.7rem);line-height:1.15;margin:0 0 .55em;padding-bottom:.24em;border-bottom:3px solid var(--accent)}
+.slide h3{font-size:clamp(1.05rem,1.45vw,1.35rem);line-height:1.2;margin:.1em 0 .35em;color:#243547}
+.slide p,.slide li{font-size:clamp(1rem,1.2vw,1.28rem);line-height:1.48}
+.slide p{margin:.45em 0 .7em}
+.slide ul{padding-left:1.25em;margin:.35em 0 .5em}
+.slide li+li{margin-top:.28em}
+.lead{font-size:clamp(1.1rem,1.65vw,1.6rem)!important;color:var(--muted);line-height:1.4!important}
+.badge{display:inline-block;margin-bottom:.75em;padding:.3em .78em;border-radius:99px;color:white;background:var(--accent);font-size:.76rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.badge.green{background:var(--green)}
+.title-slide{text-align:center;display:none;align-content:center}
+.title-slide.active{display:grid;justify-items:center}
+.title-slide h1{max-width:1050px}
+.title-slide .subtitle{max-width:900px;color:var(--muted);font-size:clamp(1.15rem,1.8vw,1.6rem);line-height:1.45}
+.authorbox{display:inline-block;margin-top:1em;padding:1em 1.4em;text-align:left;background:var(--soft);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:1rem;line-height:1.65}
+.authorbox strong{color:var(--fg)}
+a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}
+a:focus-visible,button:focus-visible{outline:3px solid #ffbd55;outline-offset:3px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.8vw,24px);margin:.6em 0}
+.cards-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.3vw,18px);margin:.6em 0}
+.card{height:100%;padding:clamp(14px,1.7vw,24px);background:#f8fafc;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:10px}
+.card.green{border-left-color:var(--green)}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card p,.card li{font-size:clamp(.96rem,1.08vw,1.16rem)}
+.qr-link{display:flex;align-items:center;gap:12px;margin-top:14px;font-size:.95rem;font-weight:650;text-decoration:none}
+.qr-link img{width:clamp(84px,9vw,112px);height:clamp(84px,9vw,112px);padding:4px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.callout{margin:.8em 0;padding:clamp(12px,1.5vw,18px);border:1px solid #f0cba0;border-left:5px solid #b4530a;border-radius:9px;background:var(--warm);font-size:clamp(1rem,1.2vw,1.28rem);line-height:1.45}
+.callout strong{color:#9a4600}
+.statline{display:flex;flex-wrap:wrap;gap:10px;margin:.6em 0}
+.stat{display:inline-flex;align-items:center;padding:.5em .85em;background:#eaf1fb;border:1px solid #cfe0f5;border-radius:99px;color:var(--accent-dark);font-size:clamp(.9rem,1.1vw,1.12rem);font-weight:700}
+.steps{counter-reset:phase;list-style:none;padding:0!important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.steps li{counter-increment:phase;padding:16px;background:var(--soft);border:1px solid var(--border);border-radius:10px}
+.steps li::before{content:counter(phase);display:grid;place-items:center;width:2em;height:2em;margin-bottom:.55em;border-radius:50%;background:var(--accent);color:white;font-weight:800}
+.case-source{display:block;margin-top:.65em;font-size:.93em;font-weight:650}
+#bar{position:fixed;z-index:30;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;gap:clamp(6px,1vw,14px);padding:0 clamp(8px,1.2vw,18px);background:#09121eee;color:#cdd8e4;font-size:clamp(.78rem,.9vw,.9rem)}
+body.notes-open #bar{right:var(--notes-width)}
+#bar button{padding:.42em .78em;border:1px solid #2b4056;border-radius:6px;background:#1b2d44;color:#e8eef6;font:inherit;cursor:pointer;white-space:nowrap}
+#bar button:hover{background:#26405c}
+#counter{min-width:4.4em;text-align:center;font-variant-numeric:tabular-nums}
+#progress{height:6px;min-width:20px;flex:1;border-radius:4px;background:#1b2d44;overflow:hidden}
+#progressbar{height:100%;width:0;background:#43a2ff;transition:width .2s ease}
+#sectionlabel{font-weight:700;letter-spacing:.04em;white-space:nowrap}
+#notes{position:fixed;z-index:25;top:0;right:0;width:var(--notes-width);height:calc(100% - 52px);padding:20px 22px 32px;overflow:auto;background:#f4f7fb;border-left:1px solid #c6d0db;transform:translateX(100%);transition:transform .25s ease}
+body.notes-open #notes{transform:none}
+#notes h3{margin:0 0 .65em;padding-bottom:.35em;border-bottom:1px solid #d3dde8;color:var(--accent);font-size:1.08rem}
+#notes .note-block{display:none}
+#notes .note-block.active{display:block}
+#notes p,#notes li{color:#33424f;font-size:.96rem;line-height:1.55}
+#notes .term{color:#12243a;font-weight:750}
+#notes .refs{margin-top:1em;padding:10px 12px;border:1px solid #d8e0ea;border-radius:8px;background:#fff}
+#notes .refs h4{margin:0 0 .4em;color:var(--muted);font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}
+.kbd{padding:.05em .42em;border:1px solid #c3cfdb;border-bottom-width:2px;border-radius:4px;background:#e7edf4;font-family:Consolas,monospace;font-size:.86em}
+@media(max-width:1050px){body.notes-open #slidewrap{margin-right:0}#notes{width:min(400px,82vw)}body.notes-open #bar{right:0}}
+@media(max-width:760px){
+  #slidewrap{padding:9px}
+  .slide{height:calc(100vh - 64px);padding:clamp(18px,4vw,30px);border-radius:9px}
+  .cards-three{grid-template-columns:1fr}
+  .cards-three .card{height:auto}
+  .steps{grid-template-columns:1fr}
+  .steps li{padding:12px}
+  .steps li::before{display:inline-grid;margin:0 .5em 0 0;vertical-align:middle}
+  .cols{gap:10px}
+}
+@media(max-width:560px){
+  .cols{grid-template-columns:1fr}
+  #bar{height:48px;gap:5px;padding:0 6px}
+  body.notes-open #bar{right:0}
+  #bar button{padding:.35em .52em;font-size:.78rem}
+  #sectionlabel{max-width:18vw;overflow:hidden;text-overflow:ellipsis;font-size:.75rem}
+  #keyhint{display:none}
+  #counter{min-width:3.8em}
+  #notes{width:100%;height:calc(100% - 48px)}
+  .slide{height:calc(100vh - 58px);padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<div id="stage"><main id="slidewrap">
+  <!-- 1: TITLE -->
+  <section class="slide title-slide" data-section="Welcome">
+    <span class="badge">Marymount University · Accounting</span>
+    <h1>Audit Simulator</h1>
+    <p class="subtitle">A five-week, hands-on project in audit interviewing, evidence, and responsible AI practice.</p>
+    <div class="authorbox"><strong>Presented by:</strong> Curtis Oden, MBA<br><strong>Sr. Manager, Corporate Audit Risk Intelligence, Automation, and AI</strong><br><strong>Date:</strong> 10/7/2026</div>
+  </section>
+
+  <!-- 2: IMPROV FOR ACCOUNTING -->
+  <section class="slide" data-section="Welcome">
+    <span class="badge">Improv for Accounting</span>
+    <h2>Can you turn a $29.95 charge into an audit story?</h2>
+    <p class="lead">In pairs, one person interviews an employee; the other plays the auditee. The recurring Pay Buddy charge is known. The actual vendor and purpose are not.</p>
+    <div class="cols">
+      <div class="card"><h3>Auditor</h3><p>Ask questions, clarify the facts, and request evidence before deciding whether the purchase was legitimate.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/auditor-brief.html" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Fauditor-brief.html" alt="QR code to the auditor brief"><span>Scan for the auditor role<br>or <u>open the brief</u></span></a></div>
+      <div class="card green"><h3>Auditee</h3><p>Play a communication style and scenario. Share details and fictional documents when the auditor asks.</p><a class="qr-link" href="https://curtisoden.github.io/Audit-Simulator/improv/role-cards/" target="_blank" rel="noopener noreferrer"><img src="https://quickchart.io/qr?size=180&text=https%3A%2F%2Fcurtisoden.github.io%2FAudit-Simulator%2Fimprov%2Frole-cards%2F" alt="QR code to the auditee role cards"><span>Scan for auditee scenarios<br>or <u>open the role cards</u></span></a></div>
+    </div>
+    <div class="callout"><strong>You just showed how naturally people can bring an audit interview to life.</strong> Teaching an AI to do the same takes careful scenario design, clear instructions, and testing. That&rsquo;s what you&rsquo;ll learn in this project.</div>
+  </section>
+
+  <!-- 3: FIVE-WEEK PROJECT -->
+  <section class="slide" data-section="The plan">
+    <span class="badge">The Five-Week Project</span>
+    <h2>From audit scenario to tested practice partner</h2>
+    <div class="cards-three">
+      <div class="card"><h3>Weeks 1–2 · Design</h3><p>Choose and sanitize a scenario. Define learning goals, stakeholder persona, and facts to reveal.</p></div>
+      <div class="card green"><h3>Week 3 · Build</h3><p>Create an assistant workspace with instructions, fictional evidence, and controlled interview behavior.</p></div>
+      <div class="card"><h3>Weeks 4–5 · Test &amp; present</h3><p>Test realistic and tricky questions, improve the assistant, then demonstrate and reflect.</p></div>
+    </div>
+    <p class="lead">The outcome: a reusable audit-interview training tool—and stronger questioning, skepticism, and evidence skills.</p>
+  </section>
+
+  <!-- 4: FLEXIBLE PARTICIPATION -->
+  <section class="slide" data-section="How to participate">
+    <span class="badge">Build It Your Way</span>
+    <h2>Choose your tool. Bring a teammate if you can.</h2>
+    <div class="cols">
+      <div class="card"><h3>Any suitable LLM</h3><p>Use any LLM you want, provided it supports a reusable workspace with instructions and reference files. Verify platform features and use only class-approved tools and fictional materials.</p></div>
+      <div class="card green"><h3>Solo or team</h3><p>You may work individually or in a team. Teams are recommended: share the work, compare interview approaches, and test the assistant from different perspectives.</p></div>
+    </div>
+    <div class="callout"><strong>Keep the scope focused:</strong> one process, one stakeholder, one key risk, and a small set of fictional facts and evidence.</div>
+  </section>
+
+  <!-- 5: WHY PARTICIPATE -->
+  <section class="slide" data-section="Why participate">
+    <span class="badge green">Why Join?</span>
+    <h2>Practice the parts of audit work you learn by doing</h2>
+    <div class="cards-three">
+      <div class="card"><h3>Interview with purpose</h3><p>Open a conversation, map a process, and ask follow-up questions that clarify what really happens.</p></div>
+      <div class="card green"><h3>Connect controls to evidence</h3><p>Identify risks, ask who performs and reviews the work, and request evidence to support explanations.</p></div>
+      <div class="card"><h3>Evaluate AI responsibly</h3><p>Design, test, and improve an AI role-play without handing over professional judgment.</p></div>
+    </div>
+    <div class="callout">No coding experience is required. The emphasis is on audit reasoning, scenario design, clear instructions, and thoughtful testing.</div>
+  </section>
+
+  <!-- 6: PARTICIPATE -->
+  <section class="slide title-slide" data-section="Q&amp;A">
+    <span class="badge">Interested?</span>
+    <h1>Bring your curiosity. Build something useful.</h1>
+    <p class="subtitle">Office hours are tentatively planned for Wednesdays at 6:00 p.m. ET.</p>
+    <div class="authorbox"><strong>Email Curtis Oden</strong><br><a href="mailto:cmo98074@marymount.edu">cmo98074@marymount.edu</a><br><a href="https://www.linkedin.com/in/curtisoden/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+  </section>
+</main></div>
+
+<aside id="notes" aria-label="Self-guided study notes and references">
+  <h3>Study Notes &amp; References</h3>
+  <div id="notescontent">
+    <!-- Notes 1 -->
+    <div class="note-block"><p>This is a brief invitation to a five-week, hands-on project. Use the arrows or Prev/Next buttons to move between slides; open Study Notes for extra context.</p></div>
+    <!-- Notes 2 -->
+    <div class="note-block"><p>In the warm-up, the auditor receives six recurring $29.95 Pay Buddy entries, but not the actual merchant or purpose. The auditee receives one role card and shares scenario details only in response to questions.</p><p>Choose the auditee card by scenario number and personality letter: A Over-sharer, B Terse responder, C Disgruntled employee, or D Smooth operator. The index lists all twelve combinations.</p><p>The point is not to catch a student out or presume a policy breach. Practice neutral questions, follow-ups, evidence requests, and careful summaries. The scenario and artifacts are fictional.</p><div class="refs"><h4>Improv activity resources</h4><ul><li><a href="https://curtisoden.github.io/Audit-Simulator/improv/" target="_blank" rel="noopener noreferrer">Activity home</a></li><li><a href="https://curtisoden.github.io/Audit-Simulator/improv/auditor-brief.html" target="_blank" rel="noopener noreferrer">Auditor brief</a></li><li><a href="https://curtisoden.github.io/Audit-Simulator/improv/artifacts/pay-buddy-transaction-list.html" target="_blank" rel="noopener noreferrer">Pay Buddy transaction list</a></li><li><a href="https://curtisoden.github.io/Audit-Simulator/improv/role-cards/" target="_blank" rel="noopener noreferrer">Auditee role cards</a></li><li><a href="https://curtisoden.github.io/Audit-Simulator/improv/artifacts/" target="_blank" rel="noopener noreferrer">Scenario evidence artifacts</a></li></ul></div></div>
+    <!-- Notes 3 -->
+    <div class="note-block"><p>Teams spend five weeks designing a focused fictional scenario, building a reusable AI stakeholder workspace, testing it, and presenting what they learned. The detailed student guide includes the sequence, deliverables, and templates.</p></div>
+    <!-- Notes 4 -->
+    <div class="note-block"><p>The project is provider-agnostic. Choose any LLM platform that supports reusable instructions and reference files, subject to course approval and its data-handling requirements.</p><p>Individual work is allowed, but teams are recommended so members can divide design, evidence, configuration, and testing and then challenge one another's assumptions.</p></div>
+    <!-- Notes 5 -->
+    <div class="note-block"><p>The office-hour time is tentative: Wednesday at 6:00 p.m. Eastern Time. Email <a href="mailto:cmo98074@marymount.edu">cmo98074@marymount.edu</a> to express interest or ask questions.</p></div>
+    <!-- Notes 6 -->
+    <div class="note-block"><p>Students interested in joining should email <a href="mailto:cmo98074@marymount.edu">cmo98074@marymount.edu</a>. The planned Wednesday office hours at 6:00 p.m. ET are tentative.</p></div>
+  </div>
+</aside>
+
+<footer id="bar">
+  <span id="sectionlabel">Welcome</span>
+  <button id="prev" type="button" aria-label="Previous slide" title="Previous (Left arrow)">← Prev</button>
+  <span id="counter">1 / 6</span>
+  <button id="next" type="button" aria-label="Next slide" title="Next (Right arrow)">Next →</button>
+  <div id="progress" aria-label="Slide progress"><div id="progressbar"></div></div>
+  <button id="notestoggle" type="button" aria-expanded="false" title="Toggle study notes (N)">Study Notes</button>
+  <span id="keyhint" style="opacity:.65">Keys: ← → N · Home / End</span>
+</footer>
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const notes=[...document.querySelectorAll('#notescontent .note-block')];
+  let current=0;
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progressbar');
+  const sectionLabel=document.getElementById('sectionlabel');
+  const notesButton=document.getElementById('notestoggle');
+  function show(index){
+    current=Math.max(0,Math.min(slides.length-1,index));
+    slides.forEach((slide,i)=>slide.classList.toggle('active',i===current));
+    notes.forEach((note,i)=>note.classList.toggle('active',i===current));
+    counter.textContent=`${current+1} / ${slides.length}`;
+    progress.style.width=`${(current+1)/slides.length*100}%`;
+    sectionLabel.textContent=slides[current].dataset.section||'';
+    slides[current].scrollTop=0;
+    history.replaceState(null,'',`#slide-${current+1}`);
+  }
+  function toggleNotes(){
+    const open=document.body.classList.toggle('notes-open');
+    notesButton.setAttribute('aria-expanded',String(open));
+  }
+  document.getElementById('prev').addEventListener('click',()=>show(current-1));
+  document.getElementById('next').addEventListener('click',()=>show(current+1));
+  notesButton.addEventListener('click',toggleNotes);
+  document.addEventListener('keydown',event=>{
+    if(event.altKey||event.ctrlKey||event.metaKey)return;
+    if(event.key==='ArrowRight'||event.key==='PageDown'){event.preventDefault();show(current+1)}
+    else if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();show(current-1)}
+    else if(event.key==='Home'){event.preventDefault();show(0)}
+    else if(event.key==='End'){event.preventDefault();show(slides.length-1)}
+    else if(event.key==='n'||event.key==='N'){toggleNotes()}
+  });
+  const initial=Number(location.hash.match(/^#slide-(\d+)$/)?.[1]||1);
+  show(initial-1);
+})();
+</script>
+</body>
+</html>

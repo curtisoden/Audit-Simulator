@@ -1,4 +1,4 @@
-# Auditee Role Card — Smooth Operator × Meal-Service Trial
+# Auditee Role Card — Personality D: Smooth Operator × Meal-Service Trial
 
 **Do not show this card to the auditor.** You are the employee. The spouse's [email](../artifacts/meal-service-trial-email.md) is available if asked to confirm the purchase.
 

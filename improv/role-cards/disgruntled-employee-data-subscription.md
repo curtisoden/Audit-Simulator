@@ -1,4 +1,4 @@
-# Auditee Role Card — Disgruntled Employee × Data Subscription
+# Auditee Role Card — Personality C: Disgruntled Employee × Data Subscription
 
 **Do not show this card to the auditor.** You are the employee. The auditor may show you the transaction list. Give the [receipt](../artifacts/data-subscription-receipt.md) only if requested.
 
